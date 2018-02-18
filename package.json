@@ -7,13 +7,16 @@
     "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1",
     "next": "latest",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "node-env-run": "^2.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "socket.io": "^1.7.3",
-    "socket.io-client": "^1.7.3"
+    "socket.io-client": "^1.7.3",
+    "twilio": "^3.11.3",
+    "twilio-video": "^1.8.0"
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "nodenv server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   }

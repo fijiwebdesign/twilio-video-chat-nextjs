@@ -1,11 +1,22 @@
 import { Component } from 'react'
 import io from 'socket.io-client'
 import fetch from 'isomorphic-fetch'
+import chat from '../js/chat'
+import { startConference, getNewRoomName, getNewUserId } from '../js/conference'
 
-class HomePage extends Component {
+if (global.window) {
+  const userId = localStorage.getItem('userId') || getNewUserId()
+  const roomName = localStorage.getItem('roomName') || getNewRoomName()
+  startConference(userId, roomName)
+}
+
+const host = 'http://localhost:3000'
+
+class HomePage extends Component
+{
   // fetch old messages data from the server
   static async getInitialProps({ req }) {
-    const response = await fetch('https://next-socket-io.now.sh/messages')
+    const response = await fetch(host + '/messages')
     const messages = await response.json()
     return { messages }
   }
@@ -22,7 +33,7 @@ class HomePage extends Component {
 
   // connect to WS server and listen event
   componentDidMount() {
-    this.socket = io('https://next-socket-io.now.sh/')
+    this.socket = io(host)
     this.socket.on('message', this.handleMessage)
   }
 

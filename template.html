@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Conference</title>
+
+    <link href="inspina/css/bootstrap.min.css" rel="stylesheet">
+    <link href="inspina/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="inspina/css/animate.css" rel="stylesheet">
+    <link href="inspina/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+    <link href="inspina/css/plugins/codemirror/ambiance.css" rel="stylesheet">
+    <link href="inspina/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="inspina/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="inspina/css/style.css" rel="stylesheet">
+    <link href="source/css/conference.css" rel="stylesheet">
+
+</head>
+
+<body class="fixed-sidebar no-skin-config full-height-layout">
+
+    <div id="wrapper">
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <h2 class="m-r-sm text-muted nav-message nav-logo">Logo</h2>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <span class="m-r-sm text-muted nav-message">Help</span>
+                        <i class="fa fa fa-question"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-top-links navbar-right" style="margin-right:calc(50% - 200px)">
+                <li>
+                    <a class="dropdown-toggle tool-time" data-toggle="dropdown" href="#">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="m-r-sm text-muted nav-message">00 : 00</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle tool-hangup" data-toggle="dropdown" href="#">
+                        <i class="fa fa-phone"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle tool-play" data-toggle="dropdown" href="#">
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+            <div class="fh-breadcrumb">
+
+                <div class="fh-column" style="float:right;">
+                    <div class="video-main" id="local-media">
+                        <i class="fa fa-user-o"></i>
+                    </div>
+                    <div class="full-height-scroll">
+                        <ul class="list-group elements-list">
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-1">
+                                    <small class="pull-right text-muted"> 16.02.2015</small>
+                                    <strong>Ann Smith</strong>
+                                    <div class="small m-t-xs">
+                                        <p>
+                                            Survived not only five centuries, but also the leap scrambled it to make.
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> Riviera State 32/106
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item active">
+                                <a data-toggle="tab" href="#tab-2">
+                                    <small class="pull-right text-muted"> 11.10.2015</small>
+                                    <strong>Paul Morgan</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            There are many variations of passages of Lorem Ipsum.
+                                            <br/>
+                                        </p>
+                                        <p class="m-b-none">
+
+                                            <span class="label pull-right label-primary">SPECIAL</span>
+                                            <i class="fa fa-map-marker"></i> California 10F/32
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-3">
+                                    <small class="pull-right text-muted"> 08.04.2015</small>
+                                    <strong>Michael Jackson</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            Look even slightly believable. If you are going to use a passage of.
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> Berlin 120R/15
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-4">
+                                    <small class="pull-right text-muted"> 16.02.2015</small>
+                                    <strong>Mark Smith</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            It was popularised in the 1960s with the release of Letraset sheets
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> San Francisko 12/100
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-1">
+                                    <small class="pull-right text-muted"> 21.04.2015</small>
+                                    <strong>Monica Novak</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            Printer took a galley of type and scrambled.
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> New York 15/43
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-2">
+                                    <small class="pull-right text-muted"> 03.12.2015</small>
+                                    <strong>Jack Smith</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            Also the leap into electronic typesetting, remaining.
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> Sant Fe 10/106
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-3">
+                                    <small class="pull-right text-muted"> 08.04.2015</small>
+                                    <strong>Michael Jackson</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            Look even slightly believable. If you are going to use a passage of.
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> Berlin 120R/15
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-4">
+                                    <small class="pull-right text-muted"> 16.02.2015</small>
+                                    <strong>Mark Smith</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            It was popularised in the 1960s with the release of Letraset sheets
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> San Francisko 12/100
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a data-toggle="tab" href="#tab-1">
+                                    <small class="pull-right text-muted"> 21.04.2015</small>
+                                    <strong>Monica Novak</strong>
+                                    <div class="small m-t-xs">
+                                        <p class="m-b-xs">
+                                            Printer took a galley of type and scrambled.
+                                        </p>
+                                        <p class="m-b-none">
+                                            <i class="fa fa-map-marker"></i> New York 15/43
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="full-height">
+                    <div class="full-height-scroll white-bg border-right">
+
+                        <div class="element-detail-box">
+
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane">
+
+                                    <div class="pull-right">
+                                        <div class="tooltip-demo">
+                                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="Plug this message"><i class="fa fa-plug"></i> Share Screen</button>
+                                        </div>
+                                    </div>
+                                    <div class="small text-muted">
+                                        <i class="fa fa-clock-o"></i> Friday, 12 April 2014, 12:32 am
+                                    </div>
+
+                                    <h1>
+                                        Their separate existence is a myth
+                                    </h1>
+
+                                    <p>
+                                        The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is.
+                                    </p>
+                                    <p>
+                                        The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.
+                                    </p>
+                                    <p>
+                                        The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls.
+                                    </p>
+
+                                    <p>
+                                        The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.
+                                    </p>
+                                    <p>
+                                        The new common language will be more simple and regular than the existing European languages. It will be as simpl.
+                                    </p>
+                                    <p>
+                                        To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is.
+                                    </p>
+                                    <p>
+                                        The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls.
+                                    </p>
+                                    <p>
+                                        It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.
+                                    </p>
+
+                                    <p>
+                                        The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.
+                                    </p>
+                                    <p>
+                                        To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is.
+                                    </p>
+                                    <p class="small">
+                                        <strong>Best regards, Anthony Smith </strong>
+                                    </p>
+
+                                    <div class="m-t-lg">
+                                        <p>
+                                            <span><i class="fa fa-paperclip"></i> 2 attachments - </span>
+                                            <a href="#">Download all</a>
+                                            |
+                                            <a href="#">View all images</a>
+                                        </p>
+
+                                        <div class="attachment">
+                                            <div class="file-box">
+                                                <div class="file">
+                                                    <a href="#">
+                                                        <span class="corner"></span>
+
+                                                        <div class="icon">
+                                                            <i class="fa fa-file"></i>
+                                                        </div>
+                                                        <div class="file-name">
+                                                            Document_2014.doc
+                                                            <br>
+                                                            <small>Added: Jan 11, 2014</small>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="file-box">
+                                                <div class="file">
+                                                    <a href="#">
+                                                        <span class="corner"></span>
+
+                                                        <div class="icon">
+                                                            <i class="fa fa-line-chart"></i>
+                                                        </div>
+                                                        <div class="file-name">
+                                                            Seels_2015.xls
+                                                            <br>
+                                                            <small>Added: May 13, 2015</small>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="tab-2" class="tab-pane active">
+                                    <div class="pull-right">
+                                        <div class="tooltip-demo">
+                                                <button id="button-share-screen" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="Start sharing your screen."><i class="fa fa-desktop"></i> Share Screen</button>
+                                                <button id="button-unshare-screen" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="Stop sharing your screen."><i class="fa fa-desktop"></i> Stop Share Screen</button>
+                                        </div>
+                                    </div>
+                                    <div class="small text-muted">
+                                        <i class="fa fa-clock-o"></i> [App Tabs]
+                                    </div>
+
+                                    <h1 class="header-app">
+                                        Whiteboard
+                                    </h1>
+                                    <div class="whiteboard-app">
+                                        <div id="app-notifications"></div>
+                                        <div id="remote-media"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+
+        </div>
+        </div>
+
+        <div id="chat-box" class="fh-column" style="float:right;">
+            <div class="full-height-scroll">
+                <ul class="list-group elements-list">
+                    <li class="list-group-item">
+                        <a data-toggle="tab" href="#tab-1">
+                            <small class="pull-right text-muted"> 16.02.2015</small>
+                            <strong>Ann Smith</strong>
+                            <div class="small m-t-xs">
+                                <p>
+                                    Survived not only five centuries, but also the leap scrambled it to make.
+                                </p>
+                                <p class="m-b-none">
+                                    <i class="fa fa-map-marker"></i> Riviera State 32/106
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    <!-- Mainly scripts -->
+    <script src="inspina/js/jquery-3.1.1.min.js"></script>
+    <script src="inspina/js/bootstrap.min.js"></script>
+    <script src="inspina/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="inspina/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="inspina/js/inspinia.js"></script>
+    <!-- Toastr -->
+    <script src="inspina/js/plugins/toastr/toastr.min.js"></script>
+    <!-- fix pace -->
+    <script>
+    // do not track websockets fixes twilio signaling error
+    window.paceOptions = {
+        ajax: {
+            trackWebSockets: false
+        }
+    };
+    </script>
+    <script src="inspina/js/plugins/pace/pace.min.js"></script>
+    
+
+    <!-- conference -->
+    <script src="source/js/url-search-params.js"></script>
+    <script src="https://cdn.WebRTC-Experiment.com/getScreenId.js"></script>
+    <script src="dist/js/index.js"></script>
+
+</body>
+
+</html>

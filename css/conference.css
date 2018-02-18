@@ -1,0 +1,93 @@
+/**
+ * Conference UI
+ */
+
+ /* fix for no left nav */
+ #page-wrapper {
+   margin-left: 0;
+ }
+
+ .navbar-fixed-top, .navbar-static-top {
+   background: #165881;
+ }
+
+.video-main {
+  width: auto;
+  height: 200px;
+  background: #000;
+}
+
+.video-main .fa {
+  font-size: 100px;
+  height: 200px;
+  width: 100%;
+  line-height: 200px;
+  text-align: center;
+}
+
+.fh-breadcrumb {
+  height: calc(100% - 100px);
+}
+
+.fh-column .slimScrollDiv {
+  height: calc(100% - 200px) !important;
+}
+
+.header-app {
+  text-align: center;
+}
+
+/** conference button icons */
+.navbar-top-links > li > a i:before {
+  display: block;
+  width: 35px;
+  text-align: center;
+  line-height: 35px;
+  overflow: hidden;
+  height: 35px;
+  border-radius: 18px;
+  background: #ccc;
+  color: #fff;
+  font-size: 22px;
+}
+
+.nav-message {
+  display: inline-block;
+  line-height: 35px;
+  overflow: hidden;
+  height: 35px;
+  color: #fff;
+}
+
+.navbar-top-links li a {
+  padding: 10px 10px;
+}
+
+.navbar-top-links > li > a.tool-hangup i:before {
+  background: #f8ac59;
+}
+
+.navbar-top-links > li > a.tool-play i:before {
+  background: #59b1f8;
+}
+
+.navbar-top-links > li > a.tool-time i:before {
+  font-size: 40px;
+  background: transparent;
+}
+
+.navbar-top-links > li > a.tool-time {
+  background: transparent;
+  color: #fff;
+}
+
+.nav-logo {
+  padding: 0 10px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+/** conference controls */
+#button-unshare-screen {
+  display: none;
+}

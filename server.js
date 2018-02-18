@@ -1,4 +1,5 @@
-const app = require('express')()
+const express = require('express')
+const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const next = require('next')
@@ -6,6 +7,9 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
 const nextHandler = nextApp.getRequestHandler()
+
+const chatApp = require('./server.chat')
+chatApp(app)
 
 // fake DB
 const messages = []
@@ -22,6 +26,8 @@ nextApp.prepare().then(() => {
   app.get('/messages', (req, res) => {
     res.json(messages)
   })
+
+  app.use(express.static('./'))
 
   app.get('*', (req, res) => {
     return nextHandler(req, res)
