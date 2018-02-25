@@ -2,6 +2,7 @@ const path = require('path');
 const twilio = require('twilio');
 const AccessToken = twilio.jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
+const debug = require('debug')('chat:server:conference')
 
 /**
  * Express Conference Server
@@ -16,6 +17,8 @@ module.exports = function chatServer(app) {
   
   app.get('/token', function(request, response) {
     var identity = request.query.identity;
+
+    debug('token request')
   
     // Create an access token which we will sign and return to the client,
     // containing the grant we just created.
@@ -31,6 +34,10 @@ module.exports = function chatServer(app) {
     // Grant the access token Twilio Video capabilities.
     var grant = new VideoGrant();
     token.addGrant(grant);
+
+    debug('token response', {
+      identity, token
+    })
   
     // Serialize the token to a JWT string and include it in a JSON response.
     response.send({

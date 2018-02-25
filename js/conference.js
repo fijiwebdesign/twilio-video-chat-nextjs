@@ -1,11 +1,11 @@
 'use strict';
 
-var Video = require('twilio-video');
+var Video = require('twilio-video')
+var debug = require('debug')('chat:conference')
 
 var activeRoom;
 var previewTracks;
-var identity;
-var userId;
+var auth; // {identity, token}
 var roomName;
 var screenTrack;
 
@@ -31,16 +31,15 @@ export function getNewUserId() {
  * Join a room
  * @param String roomName 
  */
-export function joinRoom(roomName) {
+export function joinRoom(roomName, token, callback) {
   if (!roomName) {
-    return alert('Please enter a room name.')
+    return new Error('Please enter a room name.')
   }
-  
-  if (!identity) {
-    return alert('Please call getToken before joining a room')
+  if (!token) {
+    return new Error('Please call getToken before joining a room')
   }
 
-  log("Joining room '" + roomName + "'...");
+  debug('Joining room', roomName, 'with token', token);
   var connectOptions = {
     name: roomName,
     logLevel: 'debug'
@@ -52,11 +51,11 @@ export function joinRoom(roomName) {
 
   // Join the Room with the token from the server and the
   // LocalParticipant's Tracks.
-  Video.connect(identity, connectOptions).then(roomJoined, function(
-    error
-  ) {
-    log('Could not connect to Twilio: ' + error.message);
-  });
+  Video.connect(token, connectOptions)
+    .then(room => {
+      roomJoined(room)
+      typeof callback == 'function' && callback(room)
+    }, error => debug('Twilio connect error: ' + error.message));
 }
 
 /**
@@ -78,7 +77,7 @@ export function previewLocalVideo() {
     },
     function(error) {
       console.error('Unable to access local media', error);
-      log('Unable to access Camera and Microphone');
+      debug('Unable to access Camera and Microphone');
     }
   );
 };
@@ -86,12 +85,16 @@ export function previewLocalVideo() {
 /**
  * Initialize
  */
-export function startConference(userId, roomName) {
+export function startConference(userId, roomName, callback) {
+
+  if (!userId) throw new Error('Parameter userId required')
+  if (!roomName) throw new Error('Parameter roomName required')
+
   win.addEventListener('beforeunload', leaveRoomIfJoined);
 
   document.getElementById('button-share-screen').onclick = function() {
     getUserScreen().then(function(stream) {
-      var screenTrack = stream.getVideoTracks()[0];
+      screenTrack = stream.getVideoTracks()[0];
       activeRoom.localParticipant.publishTrack(screenTrack);
       document.getElementById('button-share-screen').style.display = 'none';
       document.getElementById('button-unshare-screen').style.display = 'inline';
@@ -105,19 +108,17 @@ export function startConference(userId, roomName) {
     document.getElementById('button-unshare-screen').style.display = 'none';
   };
 
-  getToken(userId, function(identity) {
-    joinRoom(identity)
+  getToken(userId, function(auth) {
+    joinRoom(roomName, auth)
   })
 }
 
 // Obtain a token from the server in order to connect to the Room.
 function getToken(userId, cb) {
   $.getJSON('/token?identity=' + encodeURIComponent(userId), function(data) {
-    identity = data.identity;
-    log("Ready and connected as '" + identity + "'...");
-    
-    cb && cb(identity)
-
+    auth = data
+    debug("Ready and connected as", auth.identity, "token", auth.token);
+    cb && cb(auth.token)
   });
 }
 
@@ -216,9 +217,9 @@ function detachParticipantTracks(participant) {
 
 // Successfully connected!
 function roomJoined(room) {
-  win.room = activeRoom = room;
+  activeRoom = room;
 
-  log("Joined as '" + identity + "'");
+  debug('Joined room ', room, 'as', auth.identity);
 
   // Attach LocalParticipant's Tracks, if not already attached.
   var previewContainer = document.getElementById('local-media');
@@ -229,39 +230,39 @@ function roomJoined(room) {
 
   // Attach the Tracks of the Room's Participants.
   room.participants.forEach(function(participant) {
-    log("Already in Room: '" + participant.identity + "'");
+    debug("Already in Room: '" + participant.identity + "'");
     var previewContainer = document.getElementById('remote-media');
     attachParticipantTracks(participant, previewContainer);
   });
 
   // When a Participant joins the Room, log the event.
   room.on('participantConnected', function(participant) {
-    log("Joining: '" + participant.identity + "'");
+    debug("Joining: '" + participant.identity + "'");
   });
 
   // When a Participant adds a Track, attach it to the DOM.
   room.on('trackAdded', function(track, participant) {
-    log(participant.identity + ' added track: ' + track.kind);
+    debug(participant.identity + ' added track: ' + track.kind);
     var previewContainer = document.getElementById('remote-media');
     attachTracks([track], previewContainer);
   });
 
   // When a Participant removes a Track, detach it from the DOM.
   room.on('trackRemoved', function(track, participant) {
-    log(participant.identity + ' removed track: ' + track.kind);
+    debug(participant.identity + ' removed track: ' + track.kind);
     detachTracks([track]);
   });
 
   // When a Participant leaves the Room, detach its Tracks.
   room.on('participantDisconnected', function(participant) {
-    log("Participant '" + participant.identity + "' left the room");
+    debug("Participant '" + participant.identity + "' left the room");
     detachParticipantTracks(participant);
   });
 
   // Once the LocalParticipant leaves the room, detach the Tracks
   // of all Participants, including that of the LocalParticipant.
   room.on('disconnected', function() {
-    log('Left');
+    debug('Left');
     if (previewTracks) {
       previewTracks.forEach(function(track) {
         track.stop();
@@ -271,11 +272,6 @@ function roomJoined(room) {
     room.participants.forEach(detachParticipantTracks);
     activeRoom = null;
   });
-}
-
-// Activity log.
-function log(message) {
-  console.log('Conference', message)
 }
 
 // Leave Room.

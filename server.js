@@ -3,6 +3,7 @@ const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const next = require('next')
+const debug = require('debug')('chat:server:chat')
 
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
@@ -16,7 +17,9 @@ const messages = []
 
 // socket.io server
 io.on('connection', socket => {
+  debug('new chat connection', socket.id)
   socket.on('message', (data) => {
+    debug('new chat msg', socket.id, data)
     messages.push(data)
     socket.broadcast.emit('message', data)
   })
