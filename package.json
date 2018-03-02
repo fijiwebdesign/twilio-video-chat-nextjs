@@ -1,7 +1,7 @@
 {
-  "name": "with-socket.io",
+  "name": "next-conference",
   "version": "1.0.0",
-  "author": "Sergio Daniel Xalambrí <sergiodxa@gmail.com>",
+  "author": "Gabe L <gabe@fijiwebdesign.com>",
   "license": "MIT",
   "dependencies": {
     "debug": "^3.1.0",

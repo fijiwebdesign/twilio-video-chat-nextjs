@@ -3,23 +3,16 @@ import io from 'socket.io-client'
 import fetch from 'isomorphic-fetch'
 import chat from '../js/chat'
 import _debug from 'debug'
+import config from '../config'
 
 const debug = _debug('chat:com:chat')
-
-const host = 'http://localhost:3000'
 
 let $
 
 class Chat extends Component {
-  // fetch old messages data from the server
-  static async getInitialProps({ req }) {
-    const response = await fetch(host + '/messages')
-    const messages = await response.json()
-    debug('messages', messages)
-    return { messages }
-  }
 
   static defaultProps = {
+    host: config.host,
     messages: [],
   }
 
@@ -29,10 +22,14 @@ class Chat extends Component {
     messages: this.props.messages,
   }
 
+  constructor(props) {
+    super(props)
+  }
+
   // connect to WS server and listen event
   componentDidMount() {
     $ = window.jQuery
-    this.socket = io(host)
+    this.socket = io(config.host)
     this.socket.on('message', this.handleMessage)
     debug('elScroll', this.elScroll)
     const height = $(this.elScroll).parent().height() - 220

@@ -4,17 +4,18 @@ import fetch from 'isomorphic-fetch'
 import chat from '../js/chat'
 import { startConference, getNewRoomName, getNewUserId, previewLocalVideo } from '../js/conference'
 import Chat from '../components/Chat'
+import config from '../config'
 
 import _debug from 'debug'
 const debug = _debug('chat:page:index')
 
-const host = 'http://localhost:3000'
+const host = config.host
 
 class HomePage extends Component
 {
   // fetch old messages data from the server
   static async getInitialProps({ req }) {
-    debug('req', req)
+    debug('req', req.params)
     const response = await fetch(host + '/messages')
     const messages = await response.json()
     return { messages }
