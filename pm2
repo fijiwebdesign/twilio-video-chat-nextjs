@@ -1,0 +1,1 @@
+PORT=4000 pm2 --name conference start npm -- start
