@@ -7,8 +7,6 @@ import config from '../config'
 
 const debug = _debug('chat:com:chat')
 
-let $
-
 class Chat extends Component {
 
   static defaultProps = {
@@ -28,20 +26,12 @@ class Chat extends Component {
 
   // connect to WS server and listen event
   componentDidMount() {
-    $ = window.jQuery
     this.socket = io(config.host)
     this.socket.on('message', this.handleMessage)
-    debug('elScroll', this.elScroll)
-    const height = $(this.elScroll).parent().height() - 220
-    $(this.elScroll).slimscroll({
-      start: 'bottom',
-      height: height // '100%'
-    })
   }
 
   componentDidUpdate() {
-    const bottomCoord = $(this.elScroll)[0].scrollHeight
-    $(this.elScroll).slimScroll({scrollTo: bottomCoord})
+    
   }
 
   // close socket connection

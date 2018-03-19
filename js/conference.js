@@ -115,11 +115,16 @@ export function startConference(userId, roomName, callback) {
 
 // Obtain a token from the server in order to connect to the Room.
 function getToken(userId, cb) {
-  $.getJSON('/token?identity=' + encodeURIComponent(userId), function(data) {
-    auth = data
+  var req = fetch('/token?identity=' + encodeURIComponent(userId))
+  .then(resp => resp.json())
+  .then(function(auth) {
     debug("Ready and connected as", auth.identity, "token", auth.token);
     cb && cb(auth.token)
-  });
+  })
+  .catch(e => {
+    console.error('Error requesting token', e)
+  })
+  console.log('requesting token', req)
 }
 
 /**
@@ -292,5 +297,5 @@ function showChromeExtensionNotification() {
    to start sharing your screen. 
 </div>`
 
-  $('#app-notifications').html(html)
+  document.querySelector('#app-notifications').innerHTML = html
 }

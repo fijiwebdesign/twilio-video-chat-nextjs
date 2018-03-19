@@ -26,10 +26,6 @@ export default class MyDocument extends Document {
           <link href="inspina/js/plugins/gritter/jquery.gritter.css" rel="stylesheet" />
           <link href="inspina/css/style.css" rel="stylesheet" />
           <link href="css/conference.css" rel="stylesheet" />
-
-          <script src="js/pace.init.js"></script>
-
-          <script src="inspina/js/jquery-3.1.1.min.js"></script>
           
         </Head>
         <body className="fixed-sidebar no-skin-config full-height-layout">
@@ -92,11 +88,6 @@ export default class MyDocument extends Document {
 
     </div>
     </div>
-
-<script src="inspina/js/bootstrap.min.js"></script>
-<script src="inspina/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="inspina/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="inspina/js/inspinia.js"></script>
 
 <script src="https://cdn.WebRTC-Experiment.com/getScreenId.js"></script>
 
